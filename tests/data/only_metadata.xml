@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report title="Sneakers">
+    <data title="Properties">
+        <entry>
+            <key>Date</key>
+            <value>9999-99-99</value>
+        </entry>
+        <entry>
+            <key>Topic</key>
+            <value>Urban culture</value>
+        </entry>
+    </data>
+</report>

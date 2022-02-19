@@ -13,24 +13,16 @@ class MarkdownOutputTest extends TestCase {
     use WithSampleReport;
 
     ///
-    /// Initialization
-    //
-
-    public Report $report;
-
-    protected function setUp () : void {
-        $this->report = $this->buildSampleReport();
-    }
-
-    ///
     /// Tests
     //
 
-    public function testRender () : void {
-        $actual = MarkdownOutput::for($this->report)
-            ->render();
+    /**
+     * @dataProvider provideSampleReports
+     */
+    public function testRender (string $name, Report $report) : void {
+        $actual = MarkdownOutput::for($report)->render();
 
-        $expected = file_get_contents($this->getDataDir() . "/report.md");
+        $expected = file_get_contents($this->getDataDir() . "/$name.md");
 
         $this->assertEquals($expected, $actual);
     }

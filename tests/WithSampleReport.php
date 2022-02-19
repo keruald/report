@@ -12,6 +12,19 @@ trait WithSampleReport {
         return __DIR__ . "/data";
     }
 
+    public function provideSampleReports () : iterable {
+        yield ["report", $this->buildSampleReport()];
+        yield ["empty", new Report("Void report")];
+
+        $report = $this->buildSampleReport();
+        $report->properties = [];
+        yield ["no_metadata", $report];
+
+        $report = $this->buildSampleReport();
+        $report->sections = [];
+        yield ["only_metadata", $report];
+    }
+
     public function buildSampleReport () : Report {
         $report = new Report("Sneakers");
 

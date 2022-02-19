@@ -14,24 +14,16 @@ class XMLOutputTest extends TestCase {
     use WithSampleReport;
 
     ///
-    /// Initialization
-    //
-
-    public Report $report;
-
-    protected function setUp () : void {
-        $this->report = $this->buildSampleReport();
-    }
-
-    ///
     /// Tests
     //
 
-    public function testRender () : void {
-        $actual = XMLOutput::for($this->report)
-                           ->render();
+    /**
+     * @dataProvider provideSampleReports
+     */
+    public function testRender (string $name, Report $report) : void {
+        $actual = XMLOutput::for($report)->render();
 
-        $expected = file_get_contents($this->getDataDir() . "/report.xml");
+        $expected = file_get_contents($this->getDataDir() . "/$name.xml");
 
         $this->assertEquals($expected, $actual);
     }
